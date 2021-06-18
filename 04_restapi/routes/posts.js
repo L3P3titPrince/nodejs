@@ -1,5 +1,5 @@
 const express = require('express');
-
+// call as function
 const router = express.Router();
 // import models
 const Post = require('../models/spySchema');
@@ -12,13 +12,16 @@ const Post = require('../models/spySchema');
 // get all data from collection
 router.get('/', async (req, res)=>{
     try{
-        const posts = await Post.find().limit(10);
+        const posts = await Post.find().limit(1);
         res.json(posts);
     }catch(err){
         res.json({message:"GET Error"});
     }
 })
 
+router.get('/specific', (req,res) =>{
+    res.send("Specific post");
+})
 
 // router.post('/', (req, res) =>{
 //     // output the request context

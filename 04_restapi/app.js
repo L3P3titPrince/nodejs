@@ -3,7 +3,7 @@
 
 //
 const express = require('express');
-
+//
 const app = express();
 // declare mongoose
 const mongoose = require('mongoose');
@@ -16,7 +16,6 @@ const postsRoute = require('./routes/posts');
 
 
 
-
 app.use(bodyParser.json());
 // routes, create the root 
 app.get('/', (req,res) =>{
@@ -24,6 +23,8 @@ app.get('/', (req,res) =>{
 })
 // use outside posts page
 app.use('/posts', postsRoute);
+// create another user route
+// app. use('/user', userRoute)
 
 
 // change to sub directory /posts/
@@ -36,10 +37,11 @@ app.use('/posts', postsRoute);
 // })
 
 
-// connect to DB
+// connect to DB, but we use dotenv hide the full url
 mongoose.connect(
     // 'mongodb://localhost/db_test_spy', 
-    process.env.DB_CONNECTION,
+    process.env.DB_CONNECTION_LOCAL,
+    // process.env.DB_CONNECTION_AWS,
     {useNewUrlParser: true, useUnifiedTopology: true },
     ()=>console.log('Connect to DB')
 );
@@ -50,3 +52,5 @@ db.on('error', console.error.bind(console, 'MongoDB 连接错误：'));
 
 // how to we start listensin to the sever? we use port 8083
 app.listen(8083);
+
+

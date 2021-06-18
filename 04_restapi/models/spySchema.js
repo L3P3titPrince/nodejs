@@ -22,7 +22,7 @@ const benchSchema = mongoose.Schema({
     Date:String,
     investment_returns:String
 });
-module.exports = mongoose.model('spy_benchmarks', benchSchema)
+module.exports = mongoose.model('col_benchmarks', benchSchema)
 
 
 // console.log(module.exports.findOne());
