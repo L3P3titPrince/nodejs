@@ -4,6 +4,8 @@
 //
 const express = require('express');
 //
+const fs = require('fs');
+const https = require('https');
 const app = express();
 // declare mongoose
 const mongoose = require('mongoose');
@@ -14,6 +16,11 @@ require('dotenv/config');
 //import routes
 const postsRoute = require('./routes/posts');
 
+
+// set https parameters
+const options = {
+    key : fs.read
+}
 
 
 app.use(bodyParser.json());

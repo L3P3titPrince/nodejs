@@ -12,7 +12,7 @@ const Post = require('../models/spySchema');
 // get all data from collection
 router.get('/', async (req, res)=>{
     try{
-        const posts = await Post.find().limit(1);
+        const posts = await Post.find().limit(3);
         res.json(posts);
     }catch(err){
         res.json({message:"GET Error"});
