@@ -19,8 +19,9 @@ const postsRoute = require('./routes/posts');
 
 // set https parameters
 const options = {
-    key : fs.read
-}
+    key : fs.readFileSync("cert/server.key"),
+    cert : fs.readFileSync("cert/server.cert")
+};
 
 
 app.use(bodyParser.json());
@@ -60,4 +61,4 @@ db.on('error', console.error.bind(console, 'MongoDB 连接错误：'));
 // how to we start listensin to the sever? we use port 8083
 app.listen(8083);
 
-
+https.createServer(options, app).listen(8084);
