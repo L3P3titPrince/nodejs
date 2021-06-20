@@ -2,7 +2,7 @@ const express = require('express');
 // call as function
 const router = express.Router();
 // import models
-const Post = require('../models/spySchema');
+const col_ben = require('../models/benSchema');
 
 // this function only used for test, if you need get all data, 
 // router.get('/', (req, res) =>{
@@ -12,7 +12,7 @@ const Post = require('../models/spySchema');
 // get all data from collection
 router.get('/', async (req, res)=>{
     try{
-        const posts = await Post.find().limit(3);
+        const posts = await col_ben.find().limit(3);
         res.json(posts);
     }catch(err){
         res.json({message:"GET Error"});
@@ -24,17 +24,25 @@ router.get('/specific', (req,res) =>{
 })
 
 
-var request = require('request');
+
 //***********************test part *************************
 // this is part is test for modifing bubble database from a get request to mongodb
-router.get('/modifyBubble', (req,res) =>{
+const request = require('request');
+router.get('/modifyBubble', async (req,res) =>{
     var url_bubble="https://data136.bubbleapps.io/version-test/api/1.1/obj/test_mongo";
     var requestData={
         "Date":"20234-02-21",
         "investment_returns":"1666633333"
     };
-    httprequest(url_bubble,requestData);
-    console.log(requestData);
+    const colData = await col_ben.find().limit(10);
+    console.log(colData.length);
+    var i;
+    for (i=0; i<colData.length; i++){
+        httprequest(url_bubble,colData[i]);
+        console.log(colData[i]);
+    };
+    // httprequest(url_bubble,requestData);
+    // console.log(requestData);
  
     function httprequest(url,data){
         request({
