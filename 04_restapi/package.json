@@ -13,6 +13,7 @@
     "dotenv": "^10.0.0",
     "expree": "0.0.7",
     "mongoose": "^5.12.13",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "request": "^2.88.2"
   }
 }

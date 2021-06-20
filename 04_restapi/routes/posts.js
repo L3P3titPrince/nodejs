@@ -23,11 +23,41 @@ router.get('/specific', (req,res) =>{
     res.send("Specific post");
 })
 
+
+var request = require('request');
+//***********************test part *************************
 // this is part is test for modifing bubble database from a get request to mongodb
 router.get('/modifyBubble', (req,res) =>{
-    res.send("test for modifing Bubble from MongoDB JS");
-})
+    var url_bubble="https://data136.bubbleapps.io/version-test/api/1.1/obj/test_mongo";
+    var requestData={
+        "Date":"20234-02-21",
+        "investment_returns":"1666633333"
+    };
+    httprequest(url_bubble,requestData);
+    console.log(requestData);
+ 
+    function httprequest(url,data){
+        request({
+            url: url,
+            method: "POST",
+            json: true,
+            headers: {
+                "content-type": "application/json",
+                "Authorization":"Bearer 44bb385fff2a717d2a437866f42829b3"
+            },
+            body: requestData
+        }, function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                console.log(body) // 请求成功的处理逻辑
+            }
+        });
 
+    };
+    console.log("test hereeeee");
+    res.send("test for modifing Bubble from MongoDB JS");
+    // res.json(requestData);
+});
+//***********************test part *************************
 
 
 router.post('/', async (req, res) =>{

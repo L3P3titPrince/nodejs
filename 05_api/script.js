@@ -232,11 +232,10 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var request = require('request');
 var url="https://data136.bubbleapps.io/version-test/api/1.1/obj/test_mongo";
 var requestData={
-    "Date":"2020-02-01",
-    "investment_returns":"1231333333"
+    "Date":"2020-08-09",
+    "investment_returns":"1233"
 };
 console.log(requestData);
-httprequest(url,requestData);
  
 function httprequest(url,data){
     request({
@@ -254,3 +253,4 @@ function httprequest(url,data){
         }
     });
 };
+httprequest(url,requestData);
