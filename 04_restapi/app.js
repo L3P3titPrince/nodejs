@@ -1,7 +1,7 @@
 // define http
 // const http = require('http');
 
-//
+// use expresss framework to start this api
 const express = require('express');
 //
 const fs = require('fs');
@@ -17,11 +17,6 @@ require('dotenv/config');
 const postsRoute = require('./routes/posts');
 
 
-// set https parameters
-const options = {
-    key : fs.readFileSync("cert/server.key"),
-    cert : fs.readFileSync("cert/server.cert")
-};
 
 
 app.use(bodyParser.json());
@@ -56,9 +51,17 @@ mongoose.connect(
 const db = mongoose.connection;
 
 // 将连接与错误事件绑定（以获得连接错误的提示）
-db.on('error', console.error.bind(console, 'MongoDB 连接错误：'));
+// connect error with 
+db.on('error', console.error.bind(console, 'MongoDB connection error：'));
 
 // how to we start listensin to the sever? we use port 8083
 app.listen(8083);
 
+// *************************************************************************************
+// this part used for https server start, we don't use it due to CA certification, but we reserve it
+// set https parameters
+const options = {
+    key : fs.readFileSync("cert/server.key"),
+    cert : fs.readFileSync("cert/server.cert")
+};
 https.createServer(options, app).listen(8084);

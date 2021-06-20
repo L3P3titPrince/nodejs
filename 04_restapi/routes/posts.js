@@ -23,6 +23,12 @@ router.get('/specific', (req,res) =>{
     res.send("Specific post");
 })
 
+// this is part is test for modifing bubble database from a get request to mongodb
+router.get('/modifyBubble', (req,res) =>{
+    res.send("test for modifing Bubble from MongoDB JS");
+})
+
+
 
 router.post('/', async (req, res) =>{
     // output the request context
