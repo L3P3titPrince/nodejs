@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 
 const benchSchema = mongoose.Schema({
-    Date:String,
-    investment_returns:String
+    "Date":String,
+    "investment_returns":String
 });
 module.exports = mongoose.model('col_benchmarks', benchSchema)
 

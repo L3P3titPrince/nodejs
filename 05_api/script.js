@@ -228,13 +228,23 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 // );
 
 
+const mongoose = require('mongoose');
+
+
+const benchSchema = mongoose.Schema({
+    Date:String,
+    investment_returns:String
+});
+module.exports = mongoose.model('col_benchmarks', benchSchema)
+
+const colData = await module.exports.find().limit(10);
 
 var request = require('request');
 var url="https://data136.bubbleapps.io/version-test/api/1.1/obj/test_mongo";
-var requestData={
-    "Date":"2020-08-09",
-    "investment_returns":"1233"
-};
+// var requestData={
+//     "Date":"2020-08-09",
+//     "investment_returns":"1233"
+// };
 console.log(requestData);
  
 function httprequest(url,data){
