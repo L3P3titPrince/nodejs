@@ -54,8 +54,8 @@ router.get('/modifyBubble', (req,res) =>{
 
     };
     console.log("test hereeeee");
-    res.send("test for modifing Bubble from MongoDB JS");
-    // res.json(requestData);
+    // res.send("test for modifing Bubble from MongoDB JS");
+    res.json({message: "success send psot"});
 });
 //***********************test part *************************
 
