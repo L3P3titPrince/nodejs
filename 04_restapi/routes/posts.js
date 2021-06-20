@@ -53,7 +53,7 @@ router.get('/modifyBubble', async (req,res) =>{
                 "content-type": "application/json",
                 "Authorization":"Bearer 44bb385fff2a717d2a437866f42829b3"
             },
-            body: requestData
+            body: data
         }, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 console.log(body) // 请求成功的处理逻辑
