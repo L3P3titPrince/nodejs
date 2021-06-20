@@ -1,0 +1,8 @@
+# Ignore everything:
+/*
+
+# Except for the themes directories:
+
+!04_restapi
+!.gitignore
+!README.MD
