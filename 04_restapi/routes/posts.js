@@ -23,23 +23,6 @@ router.get('/specific', (req,res) =>{
     res.send("Specific post");
 })
 
-// router.post('/', (req, res) =>{
-//     // output the request context
-//     // console.log(req.body);
-//     const post = new Post({
-//         title:req.body.title,
-//         description:req.body.description
-//     });
-
-//     post.save()
-//     .then(data =>{
-//         res.json(data);
-//     })
-//     .catch(err=>{
-//         res.json({message:error});
-//     });
-// });
-
 
 router.post('/', async (req, res) =>{
     // output the request context
@@ -59,3 +42,24 @@ router.post('/', async (req, res) =>{
 
 
 module.exports = router;
+
+
+
+
+// router.post('/', (req, res) =>{
+//     // output the request context
+//     // console.log(req.body);
+//     const post = new Post({
+//         title:req.body.title,
+//         description:req.body.description
+//     });
+
+//     post.save()
+//     .then(data =>{
+//         res.json(data);
+//     })
+//     .catch(err=>{
+//         res.json({message:error});
+//     });
+// });
+

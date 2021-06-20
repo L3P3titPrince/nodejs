@@ -76,9 +76,11 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 // const request = require('request');
 // // const document = require('document');
 
-// var url_3 = 'http://hplussport.com/api/products/qty/2/name'
-// var url_4 = 'http://hplussport.com/api/products.php?qty=2&order=name'
-// var url_5 = 'https://54.196.64.63:8084/posts'
+// var url_3 = 'http://hplussport.com/api/products/qty/2/name';
+// var url_4 = 'http://hplussport.com/api/products.php?qty=2&order=name';
+// var url_5 = 'https://54.196.64.63:8084/posts';
+// var url_6 = 'http://54.196.64.63:8083/posts';
+// const url_7 = "https://reqres.in/api/products/3";
 // request(url_5, function(error, response, body){
 //     // JSON.parse(response)
 //     console.log('error', error);
@@ -155,15 +157,100 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 
 
-function reqListener () {
-    console.log(this.status)
-    console.log(this.responseText);
+// function reqListener () {
+//     console.log(this.status)
+//     console.log(this.responseText);
+// };
+// const url_1 = 'https://54.196.64.63:8084/posts'; 
+// const url_2 = 'http://54.196.64.63:8083/posts'; 
+// const url_3 = 'http://hplussport.com/api/products';
+// const url_4 = "https://reqres.in/api/products/3";
+// var oReq = new XMLHttpRequest();
+//     oReq.addEventListener("load", reqListener);
+//     oReq.open("GET", url_2);
+//     oReq.send();
+
+
+
+
+
+// const url_1 = 'https://54.196.64.63:8084/posts'; 
+// const url_2 = 'http://54.196.64.63:8083/posts'; 
+// const url_3 = 'http://hplussport.com/api/products';
+// const url_4 = "https://reqres.in/api/products/3";
+// const https = require('https');
+// Avoids DEPTH_ZERO_SELF_SIGNED_CERT error for self-signed certs
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0" 
+// https.get(url_1, (res) => {
+//   console.log('statusCode:', res.statusCode);
+//   console.log('headers:', res.headers);
+
+//   res.on('data', (d) => {
+//     process.stdout.write(d);
+//   });
+
+// }).on('error', (e) => {
+//   console.error(e);
+// });
+
+
+
+// // jquery
+// const url_1 = 'https://54.196.64.63:8084/posts'; 
+// const url_4 = "https://reqres.in/api/products/3";
+// $.ajax({
+//     url: url_4,
+//     success : function(response){
+//         console.log(reponse);
+//     }
+// });
+
+
+
+
+
+
+
+
+// const fetch=require("node-fetch");
+// const url_4 = "https://reqres.in/api/products/3";
+// const url_1 = 'https://54.196.64.63:8084/posts'; 
+// fetch(url_1)
+// .then(
+//     function(response){
+//         return response.json();
+//     }
+// )
+// .then(
+//     function(respData){
+//         console.log(respData)
+//     }
+// );
+
+
+
+var request = require('request');
+var url="https://data136.bubbleapps.io/version-test/api/1.1/obj/test_mongo";
+var requestData={
+    "Date":"2020-02-01",
+    "investment_returns":"1231333333"
 };
-const url_1 = 'https://54.196.64.63:8084/posts'; 
-const url_2 = 'http://54.196.64.63:8083/posts'; 
-const url_3 = 'http://hplussport.com/api/products';
-const url_4 = "https://reqres.in/api/products/3";
-var oReq = new XMLHttpRequest();
-    oReq.addEventListener("load", reqListener);
-    oReq.open("GET", url_2);
-    oReq.send();
+console.log(requestData);
+httprequest(url,requestData);
+ 
+function httprequest(url,data){
+    request({
+        url: url,
+        method: "POST",
+        json: true,
+        headers: {
+            "content-type": "application/json",
+            "Authorization":"Bearer 44bb385fff2a717d2a437866f42829b3"
+        },
+        body: requestData
+    }, function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body) // 请求成功的处理逻辑
+        }
+    });
+};
