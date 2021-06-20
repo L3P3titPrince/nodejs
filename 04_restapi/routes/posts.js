@@ -31,17 +31,19 @@ const request = require('request');
 router.get('/modifyBubble', async (req,res) =>{
     var url_bubble="https://data136.bubbleapps.io/version-test/api/1.1/obj/test_mongo";
     var requestData={
-        "Date":"20234-02-21",
+        "_id":"1212",
+        "Date":"sdfasf",
         "investment_returns":"1666633333"
     };
     const colData = await col_ben.find().limit(10);
-    console.log(colData.length);
+    // console.log(colData[0]);
+    // console.log(colData.length);
     var i;
     for (i=0; i<colData.length; i++){
         httprequest(url_bubble,colData[i]);
-        console.log(colData[i]);
+        // console.log(colData[i]);
     };
-    // httprequest(url_bubble,requestData);
+    // httprequest(url_bubble,colData[0]);
     // console.log(requestData);
  
     function httprequest(url,data){
@@ -56,7 +58,8 @@ router.get('/modifyBubble', async (req,res) =>{
             body: data
         }, function(error, response, body) {
             if (!error && response.statusCode == 200) {
-                console.log(body) // 请求成功的处理逻辑
+                console.log(body); // 请求成功的处理逻辑
+                console.log("suceess running in here");
             }
         });
 
