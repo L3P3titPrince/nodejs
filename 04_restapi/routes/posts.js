@@ -12,7 +12,7 @@ const col_ben = require('../models/benSchema');
 // get all data from collection
 router.get('/', async (req, res)=>{
     try{
-        const posts = await col_ben.find().limit(3);
+        const posts = await col_ben.find().limit(10);
         res.json(posts);
     }catch(err){
         res.json({message:"GET Error"});
@@ -41,7 +41,7 @@ router.get('/modifyBubble', async (req,res) =>{
     var i;
     for (i=0; i<colData.length; i++){
         httprequest(url_bubble,colData[i]);
-        // console.log(colData[i]);
+        console.log(colData[i]);
     };
     // httprequest(url_bubble,colData[0]);
     // console.log(requestData);
