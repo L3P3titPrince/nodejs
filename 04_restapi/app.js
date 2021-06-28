@@ -62,8 +62,12 @@ mongoose.connect(
     process.env.DB_CONNECTION_LOCAL,
     // process.env.DB_CONNECTION_AWS,
     {useNewUrlParser: true, useUnifiedTopology: true },
-    ()=>console.log('Connect to DB')
+    ()=>{
+        console.log('Connect to DB');
+        console.log(mongoose.connection.readyState);
+    }
 );
+console.log(mongoose.connection.readyState);
 const db = mongoose.connection;
 
 // 将连接与错误事件绑定（以获得连接错误的提示）
