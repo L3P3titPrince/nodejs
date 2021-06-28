@@ -1,3 +1,4 @@
+// This is the test version 1, only for verfication process between Bubble and MongoDB
 const express = require('express');
 // call as function
 const router = express.Router();
@@ -9,7 +10,7 @@ const col_ben = require('../models/benSchema');
 //     res.send('router posts here');
 // });
 
-// get all data from collection
+// get all data from collection, root
 router.get('/', async (req, res)=>{
     try{
         const posts = await col_ben.find().limit(10);
@@ -53,7 +54,7 @@ router.get('/modifyBubble', async (req,res) =>{
             json: true,
             headers: {
                 "content-type": "application/json",
-                "Authorization":"Bearer 44bb385fff2a717d2a437866f42829b3"
+                "Authorization":"Bearer 30b65f3e2de2e73fdd685fb35e470f56"
             },
             body: data
         }, function(error, response, body) {

@@ -228,39 +228,113 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 // );
 
 
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
 
-const benchSchema = mongoose.Schema({
-    Date:String,
-    investment_returns:String
-});
-module.exports = mongoose.model('col_benchmarks', benchSchema)
+// const benchSchema = mongoose.Schema({
+//     Date:String,
+//     investment_returns:String
+// });
+// module.exports = mongoose.model('col_benchmarks', benchSchema)
 
-const colData = await module.exports.find().limit(10);
+// const colData = module.exports.find().limit(10);
+// console
 
-var request = require('request');
-var url="https://data136.bubbleapps.io/version-test/api/1.1/obj/test_mongo";
+// var request = require('request');
+// var url="https://data136.bubbleapps.io/version-test/api/1.1/obj/test_mongo";
 // var requestData={
 //     "Date":"2020-08-09",
-//     "investment_returns":"1233"
+//     "investment_returns":"44553"
 // };
-console.log(requestData);
+// console.log(requestData);
  
-function httprequest(url,data){
-    request({
-        url: url,
-        method: "POST",
-        json: true,
-        headers: {
-            "content-type": "application/json",
-            "Authorization":"Bearer 44bb385fff2a717d2a437866f42829b3"
-        },
-        body: requestData
-    }, function(error, response, body) {
-        if (!error && response.statusCode == 200) {
-            console.log(body) // 请求成功的处理逻辑
-        }
-    });
-};
-httprequest(url,requestData);
+// function httprequest(url,data){
+//     request({
+//         url: url,
+//         method: "POST",
+//         json: true,
+//         headers: {
+//             "content-type": "application/json",
+//             "Authorization":"Bearer 44bb385fff2a717d2a437866f42829b3"
+//         },
+//         body: data
+//     }, function(error, response, body) {
+//         if (!error && response.statusCode == 200) {
+//             console.log(body) // 请求成功的处理逻辑
+//         }
+//     });
+// };
+// httprequest(url,requestData);
+
+
+
+
+
+
+// test for bubble user post 
+// const mongoose = require('mongoose');
+
+
+// const benchSchema = mongoose.Schema({
+//     Date:String,
+//     investment_returns:String
+// });
+// module.exports = mongoose.model('col_benchmarks', benchSchema)
+
+// const colData = module.exports.find().limit(10);
+
+// var request = require('request');
+// var url="https://data136.bubbleapps.io/version-test/api/1.1/obj/test_user";
+// var requestData={
+//     "Email":"333@stevens.edu",
+//     "Full Name" : "Amddddddolf",
+//     "Password":"12212312323"
+// };
+
+// // console.log(requestData);
+ 
+// function httprequest(url,data){
+//     request({
+//         url: url,
+//         method: "POST",
+//         json: true,
+//         headers: {
+//             "Content-Type": "application/json",
+//             "Authorization":"Bearer 30b65f3e2de2e73fdd685fb35e470f56"
+//         },
+//         body: data
+//     }, function(error, response, body) {
+//         if (!error && response.statusCode == 200) {
+//             console.log(body) // 请求成功的处理逻辑
+//         }
+//     });
+// };
+// httprequest(url,requestData);
+
+
+
+// {
+// "email":"1@1.com",
+// "password":"00wasabi00"
+// }
+
+
+
+// {
+// "email":"3@3.com",
+// "password":"3",
+// "full name":"password is 3"
+// }
+
+
+
+   
+
+
+
+// terminate node 
+//  http://nodejs.cn/api/process.html#process_exit_codes
+// process.exit(1)
+
+console.log(process.env.NODE_ENV)
+
