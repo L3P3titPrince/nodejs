@@ -71,7 +71,7 @@ router.get('/modifyBubble', async (req,res) =>{
     };
     // console.log("test hereeeee");
     // res.send("test for modifing Bubble from MongoDB JS");
-    // res.json({status:response.statusCode});
+    res.json({status:"Success send data from MongoDB to Bubble"});
 });
 //***********************test part *************************
 
