@@ -4,6 +4,9 @@ const express = require('express');
 const router = express.Router();
 // import models
 const col_ben = require('../models/benSchema');
+const col_stock = require('../models/stockinfoSchema.js');
+const col_user = require('../models/userSchema.js');
+const col_watch = require('../models/watchSchema');
 
 // this function only used for test, if you need get all data, 
 // router.get('/', (req, res) =>{
@@ -23,6 +26,21 @@ router.get('/', async (req, res)=>{
 router.get('/specific', (req,res) =>{
     res.send("Specific post");
 })
+
+router.post('/', async (req, res) =>{
+    // output the request context
+    // console.log(req.body);
+    const post = new Post({
+        title:req.body.title,
+        description:req.body.description
+    });
+    try{
+        const savedPost = await post.save();
+        res.json(savedPost);
+    }catch(err){
+        res.json({message:"save error"});
+    };
+});
 
 
 
@@ -72,28 +90,13 @@ router.get('/modifyBubble', async (req,res) =>{
 //***********************test part *************************
 
 
-router.post('/', async (req, res) =>{
-    // output the request context
-    // console.log(req.body);
-    const post = new Post({
-        title:req.body.title,
-        description:req.body.description
-    });
-    try{
-        const savedPost = await post.save();
-        res.json(savedPost);
-    }catch(err){
-        res.json({message:"save error"});
-    };
-});
-
 
 
 module.exports = router;
 
 
 
-
+//*******************Abandand********************** */
 // router.post('/', (req, res) =>{
 //     // output the request context
 //     // console.log(req.body);

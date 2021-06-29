@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 
 const benchSchema = mongoose.Schema({
-    _id:String,
+    // if this is objectID, you need to specific the type here
+    // _id:mongoose.ObjectId,
     Date:String,
     investment_returns:String
 });
