@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const stockSchema = mongoose.Schema({
-    _id:String,
+    // _id:String,
     date:{
         type:Date,
         dffault:Date.now,

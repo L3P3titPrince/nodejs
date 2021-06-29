@@ -33,7 +33,7 @@ const request = require('request');
 router.get('/modifyBubble', async (req,res) =>{
     var url_bubble="https://data136.bubbleapps.io/version-test/api/1.1/obj/test_mongo";
     var requestData={
-        "_id":"1212",
+        // "_id":"1212",
         "Date":"sdfasf",
         "investment_returns":"1666633333"
     };

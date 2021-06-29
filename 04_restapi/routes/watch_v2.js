@@ -3,15 +3,11 @@ const express = require('express');
 // call as function
 const router = express.Router();
 // import models
-const col_ben = require('../models/benSchema');
+// const col_ben = require('../models/benSchema');
+const col_watch = require('../models/watchSchema');
 // const col_stock = require('../models/stockinfoSchema.js');
 // const col_user = require('../models/userSchema.js');
-// const col_watch = require('../models/watchSchema');
 
-// this function only used for test, if you need get all data, 
-// router.get('/', (req, res) =>{
-//     res.send('router posts here');
-// });
 
 // the input always be string, you need to transfor them to ObjectID type
 // any string can be casted in ObjectID now.
@@ -24,7 +20,7 @@ String.prototype.toObjectId = function() {
 // get all data from collection, root
 router.get('/', async (req, res)=>{
     try{
-        let data = await col_ben.find();
+        let data = await col_watch.find();
         res.json(data);
     }catch(err){
         res.json({message:"GET ALL request Error"});
@@ -37,7 +33,7 @@ router.get('/', async (req, res)=>{
 // get a specific by its objectid
 router.get('/:id', async (req, res)=>{
     // findOne() equale to findByID() and we need first transofrm ":id" to ObjectID
-    let currBen = await col_ben.findOne({_id:req.params.id.toObjectId()});
+    let currBen = await col_watch.findOne({_id:req.params.id.toObjectId()});
     console.log(currBen);
     if(currBen){
         res.json(currBen)
@@ -46,7 +42,7 @@ router.get('/:id', async (req, res)=>{
         res.json({message:"Not Found"});
     };
     // try{
-    //     let currBen = await col_ben.findOne({_id:req.params.id.toObjectId()});
+    //     let currBen = await col_watch.findOne({_id:req.params.id.toObjectId()});
     //     console.log(currBen);
     // }catch(err){
     //     res.json({message:"Get one request error"})
@@ -59,10 +55,10 @@ router.get('/:id', async (req, res)=>{
 router.post('/', async (req, res) =>{
     // output the request context
     console.log(req.body);
-    let data = new col_ben({
-        // "_id" : "10",
-        "Date":req.body.Date,
-        "investment_returns":req.body.investment_returns
+    let data = new col_watch({
+        // "id" : "10",
+        "date":req.body.date,
+        "stock_code":req.body.stock_code
     });
     try{
         const savedPost = await data.save();
@@ -77,7 +73,7 @@ router.post('/', async (req, res) =>{
 //*****************************DELETE*************************** *//
 router.delete('/:id', async (req,res)=>{
     try{
-        let removeData = await col_ben.remove({_id:req.params.id.toObjectId()});
+        let removeData = await col_watch.remove({_id:req.params.id.toObjectId()});
         res.json(removeData);
     }catch(err){
         res.json({message:"remove error"});
@@ -88,10 +84,10 @@ router.delete('/:id', async (req,res)=>{
 //**************************UPDATE****************************** */
 router.patch('/:id', async (req,res)=>{
     try{
-        let updateData = await col_ben.updateOne(
+        let updateData = await col_watch.updateOne(
             {_id:req.params.id.toObjectId()},
             {$set:{Date:req.body.Date}}
-            // {$set:{investment_returns:req.body.investment_returns}}
+            // {$set:{stock_code:req.body.stock_code}}
         );
         res.json(updateData);
     }catch(err){
@@ -104,23 +100,24 @@ router.patch('/:id', async (req,res)=>{
 // this is part is test for modifing bubble database from a get request to mongodb
 const request = require('request');
 router.get('/modifyBubble', async (req,res) =>{
-    var url_bubble="https://data136.bubbleapps.io/version-test/api/1.1/obj/test_mongo";
-    var requestData={
-        "_id":"1212",
-        "Date":"sdfasf",
-        "investment_returns":"1666633333"
-    };
-    const colData = await col_ben.find().limit(10);
+    var url_bubble="https://data136.bubbleapps.io/version-test/api/1.1/obj/watchlists";
+    // var requestData={
+    //     "_id":"1212",
+    //     "Date":"sdfasf",
+    //     "stock_code":"1666633333"
+    // };
+    const colData = await col_watch.find();
     // console.log(colData[0]);
     // console.log(colData.length);
     var i;
+    // using for loop to send each records into bubble database
     for (i=0; i<colData.length; i++){
         httprequest(url_bubble,colData[i]);
         console.log(colData[i]);
     };
     // httprequest(url_bubble,colData[0]);
     // console.log(requestData);
- 
+    // create a 
     function httprequest(url,data){
         request({
             url: url,
@@ -155,6 +152,11 @@ module.exports = router;
 
 
 //*******************Abandand********************** */
+// this function only used for test, if you need get all data, 
+// router.get('/', (req, res) =>{
+//     res.send('router posts here');
+// });
+
 // router.post('/', (req, res) =>{
 //     // output the request context
 //     // console.log(req.body);

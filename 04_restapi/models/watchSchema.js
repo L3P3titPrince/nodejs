@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 const watchSchema = mongoose.Schema({
-    _id:String,
+    // _id:String,
     date:String,
     stock_code:String
 });

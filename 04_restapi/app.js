@@ -17,6 +17,8 @@ require('dotenv/config');
 const apiV1 = require('./routes/version1.js');
 // mount to "./routes/version2" path
 const apiV2_bench = require('./routes/bench_v2.js');
+const apiV2_watch = require('./routes/watch_v2.js');
+const apiV2_bubble = require('./routes/bubble_watch_v2.js');
 // *******************1.Statement Part****************************
 
 
@@ -45,12 +47,13 @@ app.get('/', (req,res) =>{
         });
     };
 });
-
 // use outside api version 1 page
 app.use('/api/v1', apiV1);
 // use api version 2 page and map outside URL as "/api/v2"
 app.use('/api/v2/col_benchmarks', apiV2_bench);
-//*******************2.Routes *****************
+app.use('/api/v2/col_watchlists', apiV2_watch);
+app.use('/api/v2/bubble', apiV2_bubble)
+//*******************2.Routes ***************************
 
 
 
