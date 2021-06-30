@@ -21,7 +21,7 @@ String.prototype.toObjectId = function() {
 router.get('/', async (req, res)=>{
     try{
         let data = await col_stock.find();
-        res.json({message:"200", result:data});
+        res.json(data);
     }catch(err){
         res.json({message:"GET ALL request Error"});
     }
