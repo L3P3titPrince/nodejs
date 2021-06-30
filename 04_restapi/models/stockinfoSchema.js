@@ -3,21 +3,30 @@ const mongoose = require('mongoose');
 const stockSchema = mongoose.Schema({
     // _id:String,
     date:{
-        type:Date,
+        type:String,
         dffault:Date.now,
         required:true
     },
-    stock_code:String,
-    income_plot:String,
-    trade_singal:String,
-    buy_price:Number,
-    stop_price:Number,
-    current_price:Number,
-    last_price:Number,
-    smart_trailing:Number,
-    profit_protected:Number
+    tricke:String,
+    pivot:Number,
+    vol_up1:Number,
+    vol_up2:Number,
+    vol_up3:Number,
+    vol_down1:Number,
+    vol_down2:Number,
+    vol_down3:Number,
+    recent_dip:Number,
+    last_peak:Number,
+    recent_sup:Number,
+    rec_resistance:Number,
+    recent_stoploss:Number,
+    recent_trailingstoploss:Number,
+    strategy_name:String,
+    market_trend:Number,
+    atr:Number,
+    record_id:Number
 });
-module.exports = mongoose.model('col_stockinfos', stockSchema)
+module.exports = mongoose.model('stock_infos', stockSchema)
 
 
 

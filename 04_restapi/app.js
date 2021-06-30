@@ -19,6 +19,7 @@ const apiV1 = require('./routes/version1.js');
 const apiV2_bench = require('./routes/bench_v2.js');
 const apiV2_watch = require('./routes/watch_v2.js');
 const apiV2_bubble = require('./routes/bubble_watch_v2.js');
+const apiV3_stock = require('./routes/stock_v3.js');
 // *******************1.Statement Part****************************
 
 
@@ -52,7 +53,8 @@ app.use('/api/v1', apiV1);
 // use api version 2 page and map outside URL as "/api/v2"
 app.use('/api/v2/col_benchmarks', apiV2_bench);
 app.use('/api/v2/col_watchlists', apiV2_watch);
-app.use('/api/v2/bubble', apiV2_bubble)
+app.use('/api/v2/bubble', apiV2_bubble);
+app.use('/api/v3/stock_infos', apiV3_stock);
 //*******************2.Routes ***************************
 
 
@@ -74,6 +76,7 @@ app.use('/api/v2/bubble', apiV2_bubble)
 // a better way to monitor   whole connect process
 mongoose.connect(
     process.env.DB_CONNECTION_LOCAL,
+    // process.env.DB_CONNECTION_SEA,
     {useNewUrlParser: true, useUnifiedTopology: true }
 ).then(()=>{
     console.log('0=disconnected,1=connected. Current Connection is', mongoose.connection.readyState, "Success!");
