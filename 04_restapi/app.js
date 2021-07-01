@@ -1,6 +1,5 @@
 // *******************1.Statement Part****************************
 // define http
-// const http = require('http');
 // use expresss framework to start this api
 const express = require('express');
 // file system
@@ -16,15 +15,17 @@ require('dotenv/config');
 //import routes
 const apiV1 = require('./routes/version1.js');
 // mount to "./routes/version2" path
-const apiV2_bench = require('./routes/bench_v2.js');
-const apiV2_watch = require('./routes/watch_v2.js');
-const apiV2_bubble = require('./routes/bubble_watch_v2.js');
-const apiV3_stock = require('./routes/stock_v3.js');
+const apiV2_bench = require('./routes/v2_bench.js');
+const apiV2_watch = require('./routes/v2_watch.js');
+const apiV2_bubble = require('./routes/v2_bubble_watch.js');
+// 06/30/2021 version 3
+const apiV3_stock = require('./routes/v3_stock.js');
+const apiV3_bubble = require('./routes/v3_bubble.js')
 // *******************1.Statement Part****************************
 
 
 
-//*******************2.Routes *****************
+//*****************************2.Routes ******************************
 // when we use bodyParser, we will recoginize requests for content-type:application/json
 app.use(bodyParser.json());
 // we can parse url tpye with parameters
@@ -55,6 +56,7 @@ app.use('/api/v2/col_benchmarks', apiV2_bench);
 app.use('/api/v2/col_watchlists', apiV2_watch);
 app.use('/api/v2/bubble', apiV2_bubble);
 app.use('/api/v3/stock_infos', apiV3_stock);
+app.use('/api/v3/bubble', apiV3_bubble);
 //*******************2.Routes ***************************
 
 

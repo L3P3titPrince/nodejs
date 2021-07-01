@@ -2,10 +2,12 @@
 const express = require('express');
 // call as function
 const router = express.Router();
-// import models
+const request = require('request');
+const axios = require('axios');
+// import Schema models
 // const col_ben = require('../models/benSchema');
 const col_watch = require('../models/watchSchema');
-// const col_stock = require('../models/stockinfoSchema.js');
+const col_stock = require('../models/stockinfoSchema.js');
 // const col_user = require('../models/userSchema.js');
 
 
@@ -15,6 +17,28 @@ String.prototype.toObjectId = function() {
     var ObjectId = (require('mongoose').Types.ObjectId);
     return new ObjectId(this.toString());
 };
+
+var postReq = function(postUrl, postData){
+    axios({
+        url:postUrl,
+        method:"POST",
+        json: true,
+        headers: {
+            "content-type": "application/json",
+            "Authorization":"Bearer 30b65f3e2de2e73fdd685fb35e470f56"
+        },
+        data:postData
+    })
+    .then(function(response){
+        console.log(response.status);
+        // res.json(response.status);
+    })
+    .catch(function(error){
+        console.log(error);
+    });
+};
+
+
 
 router.get('/', (req, res) =>{
     res.send('This is GET nested POST to modify Bubble Database');
@@ -26,9 +50,9 @@ router.get('/specific', (req,res) =>{
 
 //***********************test part *************************
 // this is part is test for modifing bubble database from a get request to mongodb
-const request = require('request');
-router.get('/modifyBubble', async (req,res) =>{
-    var url_bubble="https://data136.bubbleapps.io/version-test/api/1.1/obj/watchlists";
+
+router.get('/watch', async (req,res) =>{
+    let url_bubble="https://data136.bubbleapps.io/version-test/api/1.1/obj/watchlists";
     // var requestData={
     //     "_id":"1212",
     //     "Date":"sdfasf",
@@ -38,10 +62,10 @@ router.get('/modifyBubble', async (req,res) =>{
     // when we post new, we only provide "date" and "stock_code", but mongoDB will generate "_v" due to mongoose
     // in the target bubble database, we only need "date" and "stock_code",
     // default, it will inculde objectID when you use find, so you need to specify which one will contain
-    const colData = await col_watch.find({}).select({"_id":0, "date":1,"stock_code":1});
+    let colData = await col_watch.find({}).select({"_id":0, "date":1,"stock_code":1});
     console.log(colData[0]);
     // console.log(colData.length);
-    var i;
+    let i;
     // using for loop to send each records into bubble database
     for (i=0; i<colData.length; i++){
         httprequest(url_bubble,colData[i]);
@@ -74,6 +98,51 @@ router.get('/modifyBubble', async (req,res) =>{
     res.json({status:"Success send data from MongoDB to Bubble"});
 });
 //***********************test part *************************
+
+// this is part is test for modifing bubble database from a get request to mongodb
+router.get('/stock_infos', async (req,res) =>{
+    let url_bubble="https://data136.bubbleapps.io/version-test/api/1.1/obj/stock_infos";
+    // due to different format, we need to change a little here.
+    // when we post new, we only provide "date" and "stock_code", but mongoDB will generate "_v" due to mongoose
+    // in the target bubble database, we only need "date" and "stock_code",
+    // it will inculde objectID when you use find defaultly, so you need to specify which one will contain
+    let colData = await col_stock.find({}).select({
+        "_id":0, 
+        "ticker":1,
+        "pivot":1,
+        "vol_up1":1,
+        "vol_up2":1,
+        "vol_up3":1,
+        "vol_down1":1,
+        "vol_down2":1,
+        "vol_down3":1,
+        "recent_dip":1,
+        "last_peak":1,
+        "recent_support":1,
+        "recent_resistance":1,
+        "recent_stoploss":1,
+        "recent_trailingstoploss":1,
+        "strategy_name":1,
+        "market_trend":1,
+        "atr":1,
+        "record_id":1
+    });
+    // console.log(colData[0]);
+    // console.log(colData.length);
+    let i;
+    // using for loop to send each records into bubble database
+    for (i=0; i<colData.length; i++){
+        postReq(url_bubble,colData[i]);
+        console.log(colData[i]);
+    };
+    // httprequest(url_bubble,requestData);
+    // console.log(requestData);
+    // create a 
+    // console.log("test hereeeee");
+    res.json({status:"send data from MongoDB to Bubble stock_cols"});
+});
+
+
 
 
 
