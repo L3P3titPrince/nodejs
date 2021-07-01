@@ -109,7 +109,7 @@ router.get('/stock_infos', async (req,res) =>{
     let colData = await col_stock.find({}).select({
         "_id":0, 
         "date":1,
-        // "ticker":1,
+        "ticker":1,
         // "pivot":1,
         // "vol_up1":1,
         // "vol_up2":1,
