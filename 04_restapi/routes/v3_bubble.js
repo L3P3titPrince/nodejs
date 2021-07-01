@@ -108,6 +108,7 @@ router.get('/stock_infos', async (req,res) =>{
     // it will inculde objectID when you use find defaultly, so you need to specify which one will contain
     let colData = await col_stock.find({}).select({
         "_id":0, 
+        "date":1,
         "ticker":1,
         "pivot":1,
         "vol_up1":1,
