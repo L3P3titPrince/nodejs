@@ -57,7 +57,7 @@ router.get('/modifyBubble', async (req,res) =>{
             json: true,
             headers: {
                 "content-type": "application/json",
-                "Authorization":"Bearer 30b65f3e2de2e73fdd685fb35e470f56"
+                "Authorization":"Bearer f00a192fc2d7786a5f2e4153f43d82bc"
             },
             body: data
         }, function(error, response, body) {
